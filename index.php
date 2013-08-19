@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$image->readImage($_FILES['image']['tmp_name']);
 
         if ($percentage !== 100) {
-            $image->setImageOpacity(1.0);
             $image->resizeImage(($image->getImageWidth() / 100) * $percentage, ($image->getImageHeight() / 100) * $percentage, Imagick::FILTER_LANCZOS, 1);
         }
 
