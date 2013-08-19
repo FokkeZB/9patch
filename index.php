@@ -53,8 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$image = new Imagick();
 		$image->readImage($_FILES['image']['tmp_name']);
 
+        // Downsize
         if ($percentage !== 100) {
             $image->resizeImage(($image->getImageWidth() / 100) * $percentage, ($image->getImageHeight() / 100) * $percentage, Imagick::FILTER_LANCZOS, 1);
+
+            $top = ($top / 100) * $percentage;
+            $left = ($top / 100) * $percentage;
         }
 
 		$pixel = new Imagick();
