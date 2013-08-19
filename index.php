@@ -209,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="row-fluid">
                 <div class="span3"><h4>Density</h4></div>
                 <div class="span3">
-                    <select name="percentage">
+                    <select name="percentage" class="input-medium">
                         <option value="100">XHDPI (100%)</option>
                         <option value="75">HDPI (75%)</option>
                         <option value="50">MDPI (50%)</option>
