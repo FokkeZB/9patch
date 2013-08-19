@@ -1,7 +1,7 @@
 <?php
 
 $analytics = 'UA-36046051-5';
-$messages	= array( 
+$messages = array( 
 	1 => "The uploaded file exceeds the system maximum", 
 	2 => "The uploaded file exceeds the form maximum",
 	3 => "The uploaded file was only partially uploaded", 
@@ -223,8 +223,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         	<h4>Why</h4>
         	<p>This little project was born out of lazyness.</p>
-
-        	<p>Read more about it on my blog.</p>
 
         </div>
 
