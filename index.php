@@ -31,6 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			throw new Exception('Top end cap is not a number.');
 		}
 
+        $percentage = (int) $_POST['percentage'];
+        
+        if ($percentage != $_POST['percentage']|| $percentage < 1 || $percentage > 100) {
+            throw new Exception('Percentage is not valid.');
+        }
+
 		if (preg_match('/^(.+)(@2x)?(\.[^\.]+$)/U', $_FILES['image']['name'], $matches)) {
 			
 			if ($matches[2]) {
@@ -46,6 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		$image = new Imagick();
 		$image->readImage($_FILES['image']['tmp_name']);
+
+        if ($percentage !== 100) {
+            $image->resizeImage(($image->getImageWidth() / 100) * $percentage, ($image->getImageHeight() / 100) * $percentage);
+        }
 
 		$pixel = new Imagick();
 		$pixel->newImage(1, 1, new ImagickPixel('black'));
@@ -189,6 +199,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				</div>
 				<div class="span6">Only the next 1px heigh row will be resized.</div>
 			</div>
+            <div class="row-fluid">
+                <div class="span3"><h4>Percentage</h4></div>
+                <div class="span3">
+                    <input type="text" name="percentage" class="input-mini" placeholder="100%" />
+                </div>
+                <div class="span6">Downsize the image while securing a 1px 9-patch border.</div>
+            </div>
 			<div class="row-fluid">
 				 <div class="offset3 span4">
 				 	<input type="submit" class="btn btn-large btn-success" value="Generate" id="generate" />
