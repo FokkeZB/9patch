@@ -42,7 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($matches[2]) {
 				$top = $top * 2;
 				$left = $left * 2;
-			}
+
+			} else {
+                $percentage = $percentage * 2;
+            }
 
 			$filename = $matches[1] . '.9' . $matches[3];
 
@@ -204,11 +207,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<div class="span6">Only the next 1px heigh row will be resized.</div>
 			</div>
             <div class="row-fluid">
-                <div class="span3"><h4>Percentage</h4></div>
+                <div class="span3"><h4>Density</h4></div>
                 <div class="span3">
-                    <input type="text" name="percentage" class="input-mini" placeholder="100%" />
+                    <select name="percentage">
+                        <option value="100">XHDPI (100%)</option>
+                        <option value="75">HDPI (75%)</option>
+                        <option value="50">MDPI (50%)</option>
+                    </select>
                 </div>
-                <div class="span6">Downsize the image while securing a 1px 9-patch border.</div>
+                <div class="span6">Downsize the image while securing an 1px 9-patch border. If the image filename does <strong>not</strong> contain <code>@2x</code> the percentages will be doubled.</div>
             </div>
 			<div class="row-fluid">
 				 <div class="offset3 span4">
