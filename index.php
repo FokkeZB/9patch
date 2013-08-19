@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $image->resizeImage(($image->getImageWidth() / 100) * $percentage, ($image->getImageHeight() / 100) * $percentage, Imagick::FILTER_LANCZOS, 1);
 
             $top = ($top / 100) * $percentage;
-            $left = ($top / 100) * $percentage;
+            $left = ($left / 100) * $percentage;
         }
 
 		$pixel = new Imagick();
