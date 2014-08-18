@@ -31,11 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			throw new Exception('Top end cap is not a number.');
 		}
 
-        $percentage = (int) $_POST['percentage'];
-        
-        if ($percentage != $_POST['percentage']|| $percentage < 1 || $percentage > 100) {
-            throw new Exception('Percentage is not valid.');
-        }
+	        $percentage = (float) $_POST['percentage'];
+	        
+	        if ($percentage != $_POST['percentage']|| $percentage < 1 || $percentage > 200) {
+	            throw new Exception('Percentage is not valid.');
+	        }
 
 		if (preg_match('/^(.+)(@2x)?(\.[^\.]+$)/U', $_FILES['image']['name'], $matches)) {
 			
@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$left = $left * 2;
 
 			} else {
-                $percentage = $percentage * 2;
-            }
+                		$percentage = $percentage * 2;
+            		}
 
 			$filename = $matches[1] . '.9' . $matches[3];
 
@@ -56,14 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$image = new Imagick();
 		$image->readImage($_FILES['image']['tmp_name']);
 
-        // Downsize
-        if ($percentage !== 100) {
-            $image->resizeImage(($image->getImageWidth() / 100) * $percentage, ($image->getImageHeight() / 100) * $percentage, Imagick::FILTER_LANCZOS, 1);
-
-            $top = ($top / 100) * $percentage;
-            $left = ($left / 100) * $percentage;
-        }
-
+	        // Downsize
+	        if ($percentage !== 100) {
+	            $image->resizeImage(($image->getImageWidth() / 100) * $percentage, ($image->getImageHeight() / 100) * $percentage, Imagick::FILTER_LANCZOS, 1);
+	
+	            $top = ($top / 100) * $percentage;
+	            $left = ($left / 100) * $percentage;
+	        }
+	
 		$pixel = new Imagick();
 		$pixel->newImage(1, 1, new ImagickPixel('black'));
 			
@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		header("Content-Type: image/png");
 		header('Content-Disposition: attachment; filename="' . $filename . '"');
+		
 		echo $patched;
 	
 	} catch (Exception $e) {
@@ -210,12 +211,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="span3"><h4>Density</h4></div>
                 <div class="span3">
                     <select name="percentage" class="input-medium">
+                        <option value="200">XXXHDPI (200%)</option>
+                        <option value="150">XXHDPI (150%)</option>
                         <option value="100">XHDPI (100%)</option>
                         <option value="75">HDPI (75%)</option>
                         <option value="50">MDPI (50%)</option>
+                        <option value="37.5">LDPI (37.5%)</option>
                     </select>
                 </div>
-                <div class="span6">Downsize the image while securing an 1px 9-patch border. If the image filename does <strong>not</strong> contain <code>@2x</code> the percentages will be doubled.</div>
+                <div class="span6">Up- or downsize the image while securing an 1px 9-patch border. If the image filename does <strong>not</strong> contain <code>@2x</code> the percentages will be doubled.</div>
             </div>
 			<div class="row-fluid">
 				 <div class="offset3 span4">
