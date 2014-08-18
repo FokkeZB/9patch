@@ -213,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <select name="percentage" class="input-medium">
                         <option value="200">XXXHDPI (200%)</option>
                         <option value="150">XXHDPI (150%)</option>
-                        <option value="100">XHDPI (100%)</option>
+                        <option selected value="100">XHDPI (100%)</option>
                         <option value="75">HDPI (75%)</option>
                         <option value="50">MDPI (50%)</option>
                         <option value="37.5">LDPI (37.5%)</option>
