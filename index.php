@@ -248,15 +248,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       
         <div class="span6">
         
-        	<h4>Why</h4>
-        	<p>This little project was born out of lazyness.</p>
+        	<h4>Caps</h4>
+        	<p>Information on how caps on iOS work can be found in the <a href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.View" target="_blank">Ti.UI.View documentation</a>.</p>
 
         </div>
 
         <div class="span6">
-        
-        	<h4>Caps</h4>
-        	<p>Information on how caps on iOS work can be found in the <a href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.View" target="_blank">Ti.UI.View documentation</a>.</p>
         	
         	<h4>9-patch</h4>
         	<p>Information on 9-patch images on Android can be found in the <a href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.ImageView" target="_blank">Ti.UI.ImageView documentation</a>.</p>
